@@ -18,13 +18,13 @@
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                                        <label class="form-label" for="form2Example17">Email address</label>
+                                        <label class="form-label" for="email">Email address</label>
+                                        <input type="email" id="email" class="form-control form-control-lg" />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                                        <label class="form-label" for="form2Example27">Password</label>
+                                        <label class="form-label" for="password">Password</label>
+                                        <input type="password" id="password" class="form-control form-control-lg" />
                                     </div>
 
                                     <div class="pt-1 mb-4">
