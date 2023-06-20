@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $judul ?></title>
 
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
@@ -41,31 +38,36 @@
         </div>
         <div class="header-configure-area">
             <div class="language-option">
-                <img src="<?= base_url() ?>assets/img/profile/default.jpg" alt="">
-                <span>Login / Register <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
-                    <ul>
-                        <li><a href="<?= base_url() ?>auth">Login</a></li>
-                        <li><a href="<?= base_url() ?>auth/registration">Register</a></li>
-                    </ul>
-                </div>
+                <?php if ($this->session->userdata('email')) { ?>
+                    <a href="<?= base_url() ?>user" style="color: black;">
+                        <img src="<?= base_url() ?>assets/img/profile/<?= $user['image'] ?>">
+                        My Account <i class=" fa fa-angle-down"></i>
+                    </a>
+                    <div class="flag-dropdown">
+                        <ul>
+                            <li><a href="<?= base_url() ?>auth/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+                    <img src="<?= base_url() ?>assets/img/profile/default.jpg">
+                    Login / Register <i class=" fa fa-angle-down"></i>
+                    <div class="flag-dropdown">
+                        <ul>
+                            <li><a href="<?= base_url() ?>auth">Login</a></li>
+                            <li><a href="<?= base_url() ?>auth/registration">Register</a></li>
+                        </ul>
+                    </div>
+                <?php } ?>
             </div>
             <a href="<?= base_url() ?>booking" class="bk-btn">Booking Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="<?= base_url() ?>home">Home</a></li>
-                <li><a href="<?= base_url() ?>rooms">Rooms</a></li>
-                <li><a href="<?= base_url() ?>about">About Us</a></li>
-                <!-- <li><a href="./pages.php">Pages</a>
-                        <ul class="dropdown">
-                            <li><a href="./room-details.php">Room Details</a></li>
-                            <li><a href="#">Deluxe Room</a></li>
-                            <li><a href="#">Family Room</a></li>
-                            <li><a href="#">Premium Room</a></li>
-                        </ul>
-                    </li> -->
-                <li><a href="./contact.php">Contact</a></li>
+                <li class="active"><a href="./index.html">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#service">Services</a></li>
+                <li><a href="#rooms">Rooms</a></li>
+                <li><a href="#ratings">Ratings</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -103,16 +105,26 @@
                             </div>
                             <a href="<?= base_url() ?>booking" class="bk-btn">Booking Now</a>
                             <div class="language-option">
-                                <img src="<?= base_url() ?>assets/img/profile/default.jpg" alt="">
-                                Login / Register <i class="fa fa-angle-down"></i>
-
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="<?= base_url() ?>auth">Login</a></li>
-                                        <li><a href="<?= base_url() ?>auth/registration">Register</a></li>
-                                    </ul>
-                                </div>
-
+                                <?php if ($this->session->userdata('email')) { ?>
+                                    <a href="<?= base_url() ?>user" style="color: black;">
+                                        <img src="<?= base_url() ?>assets/img/profile/<?= $user['image'] ?>">
+                                        My Account <i class=" fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="flag-dropdown">
+                                        <ul>
+                                            <li><a href="<?= base_url() ?>auth/logout">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                <?php } else { ?>
+                                    <img src="<?= base_url() ?>assets/img/profile/default.jpg">
+                                    Login / Register <i class=" fa fa-angle-down"></i>
+                                    <div class="flag-dropdown">
+                                        <ul>
+                                            <li><a href="<?= base_url() ?>auth">Login</a></li>
+                                            <li><a href="<?= base_url() ?>auth/registration">Register</a></li>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -133,18 +145,11 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="<?= ($judul == 'Home') ? 'active' : '' ?>"><a href="<?= base_url() ?>home">Home</a></li>
-                                    <li class="<?= ($judul == 'Rooms' || $judul == 'Room Details') ? 'active' : '' ?>"><a href="<?= base_url() ?>rooms">Rooms</a></li>
-                                    <li class="<?= ($judul == 'About') ? 'active' : '' ?>"><a href="<?= base_url() ?>about">About Us</a></li>
-                                    <!-- <li><a href="./pages.php">Pages</a>
-                                            <ul class="dropdown">
-                                                <li><a href="./room-details.php">Room Details</a></li>
-                                                <li><a href="./blog-details.php">Blog Details</a></li>
-                                                <li><a href="#">Family Room</a></li>
-                                                <li><a href="#">Premium Room</a></li>
-                                            </ul>
-                                        </li> -->
-                                    <li><a href="./contact.php">Contact</a></li>
+                                    <li class="active"><a href="<?= base_url() ?>home">Home</a></li>
+                                    <li><a href="#about">About Us</a></li>
+                                    <li><a href="#service">Services</a></li>
+                                    <li><a href="#rooms">Rooms</a></li>
+                                    <li><a href="#ratings">Ratings</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">

@@ -22,7 +22,7 @@ class User extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header_auth', $data);
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
         $this->load->view('user/index', $data);
         $this->load->view('templates/js');
@@ -39,7 +39,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules('phone', 'Phone', 'required|trim|numeric');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header_auth', $data);
+            $this->load->view('templates/header', $data);
             $this->load->view('templates/sidenav');
             $this->load->view('user/edit', $data);
             $this->load->view('templates/js');
@@ -94,7 +94,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules('new_password2', 'Confirm New Password', 'required|trim|min_length[3]|matches[new_password1]');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header_auth', $data);
+            $this->load->view('templates/header', $data);
             $this->load->view('templates/sidenav');
             $this->load->view('user/changepassword', $data);
             $this->load->view('templates/js');
@@ -127,7 +127,8 @@ class User extends CI_Controller
     public function bookings()
     {
         $data['judul'] = 'My Bookings';
-        $this->load->view('templates/header_auth', $data);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
         $this->load->view('user/bookings');
         $this->load->view('templates/js');
@@ -136,7 +137,8 @@ class User extends CI_Controller
     public function booking_details()
     {
         $data['judul'] = 'Booking Details';
-        $this->load->view('templates/header_auth', $data);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
         $this->load->view('user/booking_details');
         $this->load->view('templates/js');

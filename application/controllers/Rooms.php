@@ -5,6 +5,7 @@ class Rooms extends CI_Controller
 {
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['judul'] = 'Rooms';
         $this->load->view('templates/header', $data);
         $this->load->view('rooms/index');
@@ -13,6 +14,7 @@ class Rooms extends CI_Controller
 
     public function details()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['judul'] = 'Room Details';
         $this->load->view('templates/header', $data);
         $this->load->view('rooms/details');
