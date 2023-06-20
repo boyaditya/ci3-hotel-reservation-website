@@ -36,17 +36,15 @@
         <div class="canvas-close">
             <i class="icon_close"></i>
         </div>
-        <div class="search-icon  search-switch">
-            <i class="icon_search"></i>
-        </div>
         <div class="header-configure-area">
             <div class="language-option">
-                <img src="<?= base_url() ?>assets/img/profile/default.jpg" alt="">
-                <span>Login / Register <i class="fa fa-angle-down"></i></span>
+                <a href="<?= base_url() ?>user" style="color: black;">
+                    <img src="<?= base_url() ?>assets/img/profile/default.jpg" alt="">
+                    <span>My Account <i class="fa fa-angle-down"></i></span>
+                </a>
                 <div class="flag-dropdown">
                     <ul>
-                        <li><a href="<?= base_url() ?>auth">Login</a></li>
-                        <li><a href="<?= base_url() ?>auth/registration">Register</a></li>
+                        <li><a href="<?= base_url() ?>auth/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,13 +101,14 @@
                             </div>
                             <a href="<?= base_url() ?>booking" class="bk-btn">Booking Now</a>
                             <div class="language-option">
-                                <img src="<?= base_url() ?>assets/img/profile/default.jpg" alt="">
-                                Login / Register <i class="fa fa-angle-down"></i>
+
+                                <a href="<?= base_url() ?>user" style="color: black;">
+                                    <img src="<?= base_url() ?>assets/img/profile/default.jpg" alt="">My Account <i class="fa fa-angle-down"></i>
+                                </a>
 
                                 <div class="flag-dropdown">
                                     <ul>
-                                        <li><a href="<?= base_url() ?>auth">Login</a></li>
-                                        <li><a href="<?= base_url() ?>auth/registration">Register</a></li>
+                                        <li><a href="<?= base_url() ?>auth/logout">Logout</a></li>
                                     </ul>
                                 </div>
 

@@ -6,7 +6,8 @@
                     <div class="row g-0">
                         <div class="col-lg-12 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form>
+
+                                <form method="post" action="<?= base_url() ?>auth/registration">
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <div class="logo">
                                             <a href="<?= base_url() ?>home">
@@ -19,58 +20,52 @@
 
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <label for="prefix">Prefix <span style="color:red"> *</span></label>
+                                            <label for="title">Title <span style="color:red"> *</span></label>
                                             <div class="form-outline">
-                                                <select>
-                                                    <?php foreach ($prefix as $p) { ?>
-                                                        <option value="<?= $p ?>"><?= $p ?></option>
+                                                <select name="title">
+                                                    <?php foreach ($title as $t) { ?>
+                                                        <option value="<?= $t ?>"><?= $t ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-outline mb-4">
-                                                <label class="form-label" for="fname">First Name <span style="color:red"> *</span></label>
-                                                <input type="fname" id="fname" class="form-control form-control-lg" />
-                                            </div>
-                                        </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="name">Full Name <span style="color:red"> *</span></label>
+                                        <input type="text" id="name" class="form-control form-control-lg" name="name" value="<?= set_value('name') ?>" />
+                                        <?= form_error('name', '<small class="text-danger">', '</small>') ?>
 
-                                        <div class="col-md-6">
-                                            <div class="form-outline mb-4">
-                                                <label class="form-label" for="lname">Last Name <span style="color:red"> *</span></label>
-                                                <input type="lname" id="lname" class="form-control form-control-lg" />
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="email">Email Address <span style="color:red"> *</span></label>
-                                        <input type="email" id="email" class="form-control form-control-lg" />
+                                        <input type="text" id="email" class="form-control form-control-lg" name="email" value="<?= set_value('email') ?>" />
+                                        <?= form_error('email', '<small class="text-danger">', '</small>') ?>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="phone">Phone<span style="color:red"> *</span></label>
-                                        <input type="tel" id="phone" class="form-control form-control-lg" />
+                                        <input type="tel" id="phone" class="form-control form-control-lg" name="phone" value="<?= set_value('phone') ?>" />
+                                        <?= form_error('phone', '<small class="text-danger">', '</small>') ?>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="password">Password <span style="color:red"> *</span></label>
-                                        <input type="password" id="password" class="form-control form-control-lg" />
+                                        <label class="form-label" for="password1">Password <span style="color:red"> *</span></label>
+                                        <input type="password" id="password1" class="form-control form-control-lg" name="password1" />
+                                        <?= form_error('password1', '<small class="text-danger">', '</small>') ?>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="password">Confirm Password <span style="color:red"> *</span></label>
-                                        <input type="password" id="password2" class="form-control form-control-lg" />
+                                        <label class="form-label" for="password2">Confirm Password <span style="color:red"> *</span></label>
+                                        <input type="password" id="password2" class="form-control form-control-lg" name="password2" />
                                     </div>
 
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="button">Register</button>
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>
                                     </div>
 
-                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Have an account? <a href="<?= base_url() ?>login" style="color: #1818fe;">Login here</a></p>
+                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Have an account? <a href="<?= base_url() ?>auth" style="color: #1818fe;">Login here</a></p>
                                 </form>
 
                             </div>

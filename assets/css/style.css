@@ -350,9 +350,9 @@ ul, ol {
 }
 .top-nav .tn-right .language-option .flag-dropdown {
 	position: absolute;
-	left: 0;
+	right: 0;
 	top: 60px;
-	width: 100px;
+	width: 140px;
 	background: #ffffff;
 	display: block;
 	padding: 10px 15px;
@@ -370,7 +370,8 @@ ul, ol {
 	text-align: left;
 }
 .top-nav .tn-right .language-option .flag-dropdown ul li a {
-	font-size: 16px;
+	display: block;
+	font-size: 18px;
 	font-weight: 500;
 	color: #19191a;
 	-webkit-transition: all 0.3s;
@@ -379,6 +380,7 @@ ul, ol {
 }
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
 	color: #dfa974;
+	background-color: #f9f9f9;
 }
 .menu-item {
 	position: relative;
@@ -2127,9 +2129,9 @@ ul, ol {
 	}
 	.offcanvas-menu-wrapper .header-configure-area .language-option .flag-dropdown {
 		position: absolute;
-		left: 0;
+		right: 0;
 		top: 60px;
-		width: 100px;
+		width: 140px;
 		background: #ffffff;
 		display: block;
 		padding: 10px 15px;
@@ -2147,7 +2149,8 @@ ul, ol {
 		text-align: left;
 	}
 	.offcanvas-menu-wrapper .header-configure-area .language-option .flag-dropdown ul li a {
-		font-size: 14px;
+		display: block;
+		font-size: 18px;
 		font-weight: 500;
 		color: #19191a;
 		-webkit-transition: all 0.3s;
@@ -2156,6 +2159,7 @@ ul, ol {
 	}
 	.offcanvas-menu-wrapper .header-configure-area .language-option .flag-dropdown ul li a:hover {
 		color: #dfa974;
+		background-color: #f9f9f9;
 	}
 	.offcanvas-menu-wrapper .header-configure-area .bk-btn {
 		display: inline-block;

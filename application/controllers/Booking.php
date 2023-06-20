@@ -11,7 +11,7 @@ class Booking extends CI_Controller
         $this->load->view('templates/footer');
     }
     
-    public function Details()
+    public function details()
     {
         $data['judul'] = 'Booking Details';
         $this->load->view('templates/header', $data);

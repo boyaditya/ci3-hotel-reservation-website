@@ -38,12 +38,12 @@
                     <form action="#">
                         <div class="check-date">
                             <label for="date-in" class="text-white">Check In:</label>
-                            <input type="text" class="date-input" id="date-in">
-                            <i class="icon_calendar"></i>
+                            <input type="text" class="date-input" id="date-in" value="<?= date("d F, Y"); ?>">
+                            <i class=" icon_calendar"></i>
                         </div>
                         <div class="check-date">
                             <label for="date-out" class="text-white">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out">
+                            <input type="text" class="date-input" id="date-out" value="<?= date("d F, Y", mktime(24)); ?>">
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="select-option">
@@ -85,9 +85,9 @@
                                         <hr class="mt-4 mb-2">
 
                                         <div class="text-right">
-                                            <h5 class="card-text font-weight-bold">Rp. 1.000.000</h5>
+                                            <h5 class="card-text font-weight-bold">Rp1.000.000,00</h5>
                                             <p class="card-text">Per Night</p>
-                                            <a href="<?= base_url() ?>booking/details"><button class="btn btn-primary">Book Now</button></a>
+                                            <a href="<?= base_url() ?>booking/details"><button class="btn btn-secondary">Book Now</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -114,9 +114,9 @@
                                         <hr class="mt-4 mb-2">
 
                                         <div class="text-right">
-                                            <h5 class="card-text font-weight-bold">Rp. 1.000.000</h5>
+                                            <h5 class="card-text font-weight-bold">Rp1.000.000,00</h5>
                                             <p class="card-text">Per Night</p>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
+                                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">
                                                 Book Now
                                             </button>
                                         </div>
@@ -144,11 +144,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                To make a hotel room reservation, you must login to your account. If you don't have an account yet, please <a href="<?= base_url() ?>register">click here</a> to create one.
+                To make a hotel room reservation, you must login to your account. If you don't have an account yet, please <a href="<?= base_url() ?>auth/registration">click here</a> to create one.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href="<?= base_url() ?>login"><button type="button" class="btn btn-primary">Login Page</button></a>
+                <a href="<?= base_url() ?>auth"><button type="button" class="btn btn-primary">Login Page</button></a>
             </div>
         </div>
     </div>
