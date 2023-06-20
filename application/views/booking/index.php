@@ -27,6 +27,18 @@
         color: white;
         background-color: #dfa974;
     }
+
+    .book-btn {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 14px 25px 13px;
+        background: #dfa974;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border: none;
+    }
 </style>
 
 <main class="mt-4">
@@ -35,15 +47,15 @@
         <div class="row mb-5">
             <div class="col-md-4">
                 <div class="booking-form bg-dark">
-                    <form action="#">
+                    <form action="<?= base_url() ?>booking/checkavailability" method="post">
                         <div class="check-date">
                             <label for="date-in" class="text-white">Check In:</label>
-                            <input type="text" class="date-input" id="date-in" value="<?= date("d F, Y"); ?>">
+                            <input type="text" class="date-input" id="date-in" name="ci" value="<?= date("d F, Y", $ci); ?>">
                             <i class=" icon_calendar"></i>
                         </div>
                         <div class="check-date">
                             <label for="date-out" class="text-white">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out" value="<?= date("d F, Y", mktime(24)); ?>">
+                            <input type="text" class="date-input" id="date-out" name="co" value="<?= date("d F, Y", $co); ?>">
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="select-option">
@@ -66,71 +78,42 @@
             </div>
 
             <div class="col-md-8 bg-white padding-2 container">
-                <div class="card mb-3" style="max-width: 100%;">
-                    <div class="row no-gutters">
+                <?php foreach ($rooms as $room) { ?>
+                    <div class="card mb-3" style="max-width: 100%;">
+                        <div class="row no-gutters">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-5 p-3">
+                                            <img src="<?= base_url() ?>assets/img/room/<?= $room['gambar'] ?>" style=" width: 100% !important;" class="rounded" alt="...">
+                                        </div>
 
-                        <div class="col-md-12">
+                                        <div class="col-md-7">
+                                            <h5 class="card-title"><?= $room['jenis_kamar'] ?></h5>
+                                            <p class="card-text"><small>Max person <?= $room['kapasitas_kamar'] ?> | <?= $room['jenis_ranjang'] ?> | <?= $room['ukuran_kamar'] ?> m²</small></p>
+                                            <p class="card-text">32sqmt, King, Spacious Work Space, Complimentary wired & wireless internet.</p>
+                                            <p class="card-text"><a href="<?= base_url() ?>rooms/details" class="btn-link">Room Details</a></p>
+                                            <hr class="mt-4 mb-2">
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-5 p-3">
-                                        <img src="<?= base_url() ?>assets/img/room/room-2.jpg" style=" width: 100% !important;" class="rounded" alt="...">
-                                    </div>
-
-                                    <div class="col-md-7">
-                                        <h5 class="card-title">Deluxe King</h5>
-                                        <p class="card-text"><small>Sleeps 3 | 1 King | 36 m²</small></p>
-                                        <p class="card-text">32sqmt, King, Spacious Work Space, Complimentary wired & wireless internet.</p>
-                                        <p class="card-text"><a href="<?= base_url() ?>rooms/details" class="btn-link">Room Details</a></p>
-                                        <hr class="mt-4 mb-2">
-
-                                        <div class="text-right">
-                                            <h5 class="card-text font-weight-bold">Rp1.000.000,00</h5>
-                                            <p class="card-text">Per Night</p>
-                                            <a href="<?= base_url() ?>booking/details"><button class="btn btn-secondary">Book Now</button></a>
+                                            <div class="text-right">
+                                                <h5 class="card-text font-weight-bold">Rp<?= number_format($room['harga_kamar'], 2, ",", ".") ?></h5>
+                                                <p class="card-text">Per Night</p>
+                                                <?php if ($this->session->userdata('email')) { ?>
+                                                    <a href="<?= base_url() ?>booking/details/<?= $room['id_jenis_kamar'] ?>/<?= $ci ?>/<?= $co ?>"><button class="btn book-btn">Book Now</button></a>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn book-btn" data-toggle="modal" data-target="#login">Book Now</button>
+                                                <?php } ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card mb-3" style="max-width: 100%;">
-                    <div class="row no-gutters">
-
-                        <div class="col-md-12">
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-5 p-3">
-                                        <img src="<?= base_url() ?>assets/img/room/room-2.jpg" style=" width: 100% !important;" class="rounded" alt="...">
-                                    </div>
-
-                                    <div class="col-md-7">
-                                        <h5 class="card-title">Deluxe King</h5>
-                                        <p class="card-text"><small>Sleeps 3 | 1 King | 36 m²</small></p>
-                                        <p class="card-text">32sqmt, King, Spacious Work Space, Complimentary wired & wireless internet.</p>
-                                        <p class="card-text"><a href="" class="btn-link">Room Details</a></p>
-                                        <hr class="mt-4 mb-2">
-
-                                        <div class="text-right">
-                                            <h5 class="card-text font-weight-bold">Rp1.000.000,00</h5>
-                                            <p class="card-text">Per Night</p>
-                                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">
-                                                Book Now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
-
         </div>
     </div>
-
 </main>
 
 <!-- Modal -->

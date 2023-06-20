@@ -46,7 +46,7 @@
 <main class="mt-4">
     <div class="container">
 
-        <h4 class="mb-4 back"><a href="<?= base_url() ?>booking"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> Finalize your stay</h4>
+        <h4 class="mb-4 back"><a href="<?= base_url() ?>booking/index/<?= $ci_s ?>/<?= $co_s ?>"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> Finalize your stay</h4>
         <div class="row mb-5">
 
             <div class="col-md-4 mb-5">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <p class="card-text">Sun, Jun 18, 2023 - Mon, Jun 19, 2023</p>
+                                    <p class="card-text"><?= $ci ?> - <?= $co ?></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -142,48 +142,56 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
-
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url() ?>booking/details" method="post">
+                                <input type="hidden" value="<?= $user['id'] ?>" name="id">
                                 <h3 class="mb-4">Contact Info</h3>
-
-                                <!-- prefix -->
-                                <div class="row">
-                                    <div class="col-md-2
-                                     mb-3">
-                                        <label for="fname" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="fname" name="fname" required autocomplete="off" readonly>
+                                <!-- title -->
+                                <div class="form-group row">
+                                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                                    <div class="col-sm-10">
+                                        <select id="title" name="title" disabled>
+                                            <?php foreach ($title as $t) { ?>
+                                                <?php if ($t == $user['title']) { ?>
+                                                    <option value="<?= $t ?>" selected><?= $t ?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?= $t ?>"><?= $t ?></option>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <!-- Name -->
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="fname" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" id="fname" name="fname" required autocomplete="off" readonly>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="lname" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" id="lname" name="lname" required autocomplete="off" readonly>
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-2 col-form-label">Full Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" name="name" value="<?= $user['name'] ?>" readonly>
+                                        <?= form_error('name', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
 
-                                <!-- phone and email -->
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required autocomplete="off" readonly>
+                                <!-- email -->
+                                <div class="form-group row">
+                                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="email" name="email" value="<?= $user['email'] ?>" readonly>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="tel" class="form-control" id="phone" name="phone" required autocomplete="off" readonly>
+                                </div>
+
+                                <!-- phone -->
+                                <div class=" form-group row">
+                                    <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="tel" class="form-control" id="phone" name="phone" value="<?= $user['phone'] ?>" readonly>
+                                        <?= form_error('phone', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
 
                                 <!-- change info button -->
-                                <div class="row mt-3">
+                                <div class="row mt-5">
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label">To change contact info, click the button below</label>
-                                        <a href="<?= base_url() ?>user/profile">
+                                        <a href="<?= base_url() ?>user/edit">
                                             <button type="button" class="btn btn-secondary"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Change Contact Info</button>
                                         </a>
                                     </div>

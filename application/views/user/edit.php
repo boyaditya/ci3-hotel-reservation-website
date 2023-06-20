@@ -66,8 +66,8 @@
                     </div>
 
                     <!-- button -->
-                    <div class="form-group row justify-content-end">
-                        <div class="col-sm-10 mt-3">
+                    <div class="form-group row float-right">
+                        <div class="col-sm mt-3 ">
                             <button type="submit" class="btn btn-secondary">Edit Profile</button>
                         </div>
                     </div>

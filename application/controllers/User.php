@@ -15,12 +15,11 @@ class User extends CI_Controller
             }
         }
     }
-
+    
     public function index()
     {
         $data['judul'] = 'My Profile';
-
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->User_model->getUserBySessionEmail();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
@@ -32,8 +31,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Edit Profile';
         $data['title'] = ['Dr.', 'Mr.', 'Mrs.', 'Ms.'];
-
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->User_model->getUserBySessionEmail();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
         $this->form_validation->set_rules('phone', 'Phone', 'required|trim|numeric');
@@ -64,19 +62,16 @@ class User extends CI_Controller
                     if ($old_image != 'default.jpg') {
                         unlink(FCPATH . 'assets/img/profile/' . $old_image);
                     }
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+
+                    $this->User_model->uploadUserImage();
+                    
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
                     redirect('user');
                 }
             }
 
-            $this->db->set('name', $name);
-            $this->db->set('phone', $phone);
-            $this->db->set('title', $title);
-            $this->db->where('email', $email);
-            $this->db->update('user');
+            $this->User_model->editUserProfile($name, $phone, $title, $email);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your profile has been updated</div>');
             redirect('user');
@@ -86,8 +81,7 @@ class User extends CI_Controller
     public function changePassword()
     {
         $data['judul'] = 'Change Password';
-
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->User_model->getUserBySessionEmail();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[3]|matches[new_password2]');
@@ -101,6 +95,7 @@ class User extends CI_Controller
         } else {
             $current_password = $this->input->post('current_password');
             $new_password = $this->input->post('new_password1');
+            
             if (!password_verify($current_password, $data['user']['password'])) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
                 redirect('user/changepassword');
@@ -112,9 +107,7 @@ class User extends CI_Controller
                     // password sudah ok
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-                    $this->db->set('password', $password_hash);
-                    $this->db->where('email', $this->session->userdata('email'));
-                    $this->db->update('user');
+                    $this->User_model->changeUserPassword($password_hash);
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password changed!</div>');
                     redirect('user/changepassword');
@@ -127,7 +120,8 @@ class User extends CI_Controller
     public function bookings()
     {
         $data['judul'] = 'My Bookings';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->User_model->getUserBySessionEmail();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
         $this->load->view('user/bookings');
@@ -137,7 +131,8 @@ class User extends CI_Controller
     public function booking_details()
     {
         $data['judul'] = 'Booking Details';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->User_model->getUserBySessionEmail();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
         $this->load->view('user/booking_details');

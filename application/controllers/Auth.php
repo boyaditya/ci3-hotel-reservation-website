@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -42,7 +41,7 @@ class Auth extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+        $user = $this->Auth_model->getUserByEmail($email);
 
         // usernya ada
         if ($user) {
@@ -107,7 +106,8 @@ class Auth extends CI_Controller
                 'date_created' => time()
             ];
 
-            $this->db->insert('user', $data);
+            $this->Auth_model->insertDataRegistration($data);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your account has been created. Please Login</div>');
             redirect('auth');
         }

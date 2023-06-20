@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets/img/logo-black.png">
     <title><?= $judul ?></title>
 
     <!-- Google Font -->
@@ -39,7 +40,7 @@
         <div class="header-configure-area">
             <div class="language-option">
                 <?php if ($this->session->userdata('email')) { ?>
-                    <a href="<?= base_url() ?>user" style="color: black;">
+                    <a href="<?= base_url() ?><?= ($this->session->userdata('role_id') == 1) ? 'admin' : 'user' ?>" style="color: black;">
                         <img src="<?= base_url() ?>assets/img/profile/<?= $user['image'] ?>">
                         My Account <i class=" fa fa-angle-down"></i>
                     </a>
@@ -103,10 +104,10 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="<?= base_url() ?>booking" class="bk-btn">Booking Now</a>
+                            <a href="<?= base_url() ?>booking/index/<?= time(); ?>/<?= time() + 86400 ?>" class="bk-btn">Booking Now</a>
                             <div class="language-option">
                                 <?php if ($this->session->userdata('email')) { ?>
-                                    <a href="<?= base_url() ?>user" style="color: black;">
+                                    <a href="<?= base_url() ?><?= ($this->session->userdata('role_id') == 1) ? 'admin' : 'user' ?>" style="color: black;">
                                         <img src="<?= base_url() ?>assets/img/profile/<?= $user['image'] ?>">
                                         My Account <i class=" fa fa-angle-down"></i>
                                     </a>

@@ -19,11 +19,37 @@ class Admin extends CI_Controller
     {
         $data['judul'] = 'Dashboard';
 
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->Admin_model->getUserBySessionEmail();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidenav');
+        $this->load->view('templates/sidenav_admin');
         $this->load->view('admin/index', $data);
+        $this->load->view('templates/js');
+    }
+
+    public function customerList()
+    {
+        $data['judul'] = 'Customer List';
+
+        $data['user'] = $this->Admin_model->getUserBySessionEmail();
+        $data['customers'] = $this->Admin_model->getAllCustomer();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidenav_admin');
+        $this->load->view('admin/customerlist', $data);
+        $this->load->view('templates/js');
+    }
+
+    public function invoiceList()
+    {
+        $data['judul'] = 'Invoice List';
+
+        $data['user'] = $this->Admin_model->getUserBySessionEmail();
+        $data['customers'] = $this->Admin_model->getAllCustomer();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidenav_admin');
+        $this->load->view('admin/invoicelist', $data);
         $this->load->view('templates/js');
     }
 }
