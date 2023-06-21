@@ -42,71 +42,11 @@
     }
 </style>
 
-
 <main class="mt-4">
     <div class="container">
 
         <h4 class="mb-4 back"><a href="<?= base_url() ?>booking/index/<?= $ci_s ?>/<?= $co_s ?>"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> Finalize your stay</h4>
         <div class="row mb-5">
-
-            <div class="col-md-4 mb-5">
-                <div class="d-flex flex-column flex-shrink-0">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header font-weight-bold">Your Stay</div>
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-md-12">
-                                    <h6 class="card-text font-weight-bold">Luxe Hotel Bandung</h6>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-4">
-                                    <p class="card-text font-weight-bold">Address</p>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <p class="card-text">Bandung City, West Java, Indonesia</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="card-text font-weight-bold">Check-in</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="card-text font-weight-bold">Check-out</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="card-text">After 3:00 PM</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="card-text">Before 12:00 PM</p>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <p class="card-text"><?= $ci ?> - <?= $co ?></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="card-text">1 Adult</p>
-                                </div>
-                            </div>
-                            <hr class="mt-4 mb-2">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p class="card-text font-weight-bold">TOTAL : </p>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="card-text font-weight-bold float-right">Rp. 1.250.000,00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
             <div class="col-md-8 bg-white padding-2 container">
@@ -118,19 +58,19 @@
                             <div class="card-body room-info">
                                 <div class="row">
                                     <div class="col-md-5 p-3">
-                                        <img src="<?= base_url() ?>assets/img/room/room-2.jpg" style=" width: 100% !important;" class="rounded" alt="...">
+                                        <img src="<?= base_url() ?>assets/img/details/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>/<?= $room['detail_1'] ?>" style=" width: 100% !important;" class="rounded" alt="...">
                                     </div>
 
                                     <div class="col-md-7">
-                                        <h5 class="card-title">Deluxe King</h5>
-                                        <p class="card-text"><small>Sleeps 3 | 1 King | 36 m²</small></p>
+                                        <h5 class="card-title"><?= $room['jenis_kamar'] ?></h5>
+                                        <p class="card-text"><small>Max person <?= $room['kapasitas_kamar'] ?> | <?= $room['jenis_ranjang'] ?> | <?= $room['ukuran_kamar'] ?> m²</small></p>
                                         <p class="card-text">32sqmt, King, Spacious Work Space, Complimentary wired & wireless internet.</p>
-                                        <p class="card-text"><a href="<?= base_url() ?>rooms/details" class="btn-link">Room Details</a></p>
+                                        <p class="card-text"><a href="<?= base_url() ?>rooms/details/<?= $room['id_jenis_kamar'] ?>/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>" class="btn-link" target="_blank">Room Details</a></p>
                                         <hr class="mt-4 mb-2">
 
                                         <div class="text-right">
-                                            <h5 class="card-text font-weight-bold">Rp1.000.000,00</h5>
-                                            <p class="card-text">Per Night</p>
+                                            <h5 class="card-text font-weight-bold">Rp<?= number_format($room['harga_kamar'], 2, ",", ".") ?></h5>
+                                            <p class="card-text">Per Night <br> <small class="font-weight-light">Excluding Taxes & Fees</small></p>
                                         </div>
                                     </div>
                                 </div>
@@ -142,8 +82,17 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-12 mb-3">
-                            <form action="<?= base_url() ?>booking/details" method="post">
-                                <input type="hidden" value="<?= $user['id'] ?>" name="id">
+                            <form action="<?= base_url() ?>booking/bookingroom" method="post">
+                                <input type="hidden" value="<?= $user['id'] ?>" name="id_customer">
+                                <input type="hidden" value="<?= $room['id_jenis_kamar'] ?>" name="id_kamar">
+                                <input type="hidden" value="<?= $ci_s ?>" name="check_in">
+                                <input type="hidden" value="<?= $co_s ?>" name="check_out">
+                                <input type="hidden" value="<?= $room['harga_kamar'] ?>" name="harga_kamar">
+                                <input type="hidden" value="<?= $tax ?>" name="pajak">
+                                <input type="hidden" value="<?= $service_charge ?>" name="service">
+                                <input type="hidden" value="<?= $total_harga ?>" name="total_harga">
+                                <input type="hidden" value="<?= $count_days ?>" name="jumlah_malam">
+
                                 <h3 class="mb-4">Contact Info</h3>
                                 <!-- title -->
                                 <div class="form-group row">
@@ -243,6 +192,96 @@
                                 </div>
 
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-5">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header font-weight-bold">Your Stay</div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <h6 class="card-text font-weight-bold">Luxe Hotel Bandung</h6>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <p class="card-text font-weight-bold">Address</p>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <p class="card-text">Bandung City, West Java, Indonesia</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="card-text font-weight-bold">Check-in</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text font-weight-bold">Check-out</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="card-text">After 3:00 PM</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text">Before 12:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <p class="card-text"><?= $ci ?> - <?= $co ?></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="card-text">1 Adult</p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h6 class="card-text font-weight-bold"><?= $room['jenis_kamar'] ?></h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text float-right font-weight-bold">Rp<?= number_format(($room['harga_kamar'] * $count_days), 2, ",", ".") ?></p>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-6">
+                                    <p class="card-text"><?= $count_days ?> Night</p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <p class="card-text">Service Charge (5%)</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text float-right">Rp<?= number_format(($service_charge), 2, ",", ".") ?></p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <p class="card-text">Tax (10%)</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text float-right">Rp<?= number_format(($tax), 2, ",", ".") ?></p>
+                                </div>
+                            </div>
+
+
+                            <hr class="mt-4 mb-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="card-text font-weight-bold">TOTAL : </p>
+                                </div>
+                                <div class="col-md-8">
+                                    <p class="card-text font-weight-bold float-right">Rp<?= number_format(($total_harga), 2, ",", ".") ?></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

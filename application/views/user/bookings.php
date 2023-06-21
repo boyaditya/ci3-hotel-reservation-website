@@ -24,26 +24,31 @@
                         <th scope="col" style="width: 10%;"></th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>
-                        <th scope="row" rowspan="4">1</th>
-                        <td rowspan="4"><img src="<?= base_url() ?>assets/img/room/room-2.jpg" width="200px" class="p-1" alt="..."></td>
-                        <td>Room : </td>
-                        <td><a href="">Deluxe Room</a></td>
-                        <td rowspan="4" class="align-middle"><a href="<?= base_url() ?>user/booking_details"><button class="btn btn-secondary">Details</button></a></td>
-                    </tr>
-                    <tr>
-                        <td>Check-in : </td>
-                        <td>17/06/2023</td>
-                    </tr>
-                    <tr>
-                        <td>Check-out : </td>
-                        <td>18/06/2023</td>
-                    </tr>
-                    <tr>
-                        <td>Booking date: </td>
-                        <td>17/06/2023 11:26 PM</td>
-                    </tr>
+                    <?php $i = 1 ?>
+                    <?php foreach ($bookings as $booking) { ?>
+                        <tr>
+                            <th scope="row" rowspan="4"><?= $i ?></th>
+                            <td rowspan="4" class="align-middle"><img src="<?= base_url() ?>assets/img/details/<?= strtolower(str_replace(' ', '-', $booking['jenis_kamar'])) ?>/<?= $booking['detail_1'] ?>" width="200px" class="p-1" alt="..."></td>
+                            <td>Room : </td>
+                            <td><a href="<?= base_url() ?>rooms/details/<?= $booking['id_jenis_kamar'] ?>/<?= strtolower(str_replace(' ', '-', $booking['jenis_kamar'])) ?>"><?= $booking['jenis_kamar'] ?></a></td>
+                            <td rowspan="4" class="align-middle"><a href="<?= base_url() ?>user/booking_details/<?= $booking['id_booking'] ?>"><button class="btn btn-secondary">Details</button></a></td>
+                        </tr>
+                        <tr>
+                            <td>Check-in : </td>
+                            <td><?= date("d F, Y", $booking['check_in']); ?></td>
+                        </tr>
+                        <tr>
+                            <td>Check-out : </td>
+                            <td><?= date("d F, Y", $booking['check_out']); ?></td>
+                        </tr>
+                        <tr>
+                            <td>Booking date: </td>
+                            <td><?= $booking['tanggal'] ?></td>
+                        </tr>
+                        <?php $i++ ?>
+                    <?php } ?>
                 </tbody>
             </table>
 

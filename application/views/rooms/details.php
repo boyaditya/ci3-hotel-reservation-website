@@ -4,10 +4,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>Our Rooms</h2>
+                    <h2><?= $room['jenis_kamar'] ?></h2>
                     <div class="bt-option">
                         <a href="<?= base_url() ?>home">Home</a>
-                        <span>Rooms</span>
+                        <a href="<?= base_url() ?>rooms">Rooms</a>
+                        <span><?= $room['jenis_kamar'] ?></span>
                     </div>
                 </div>
             </div>
@@ -22,11 +23,16 @@
         <div class="col-lg-12 mx-auto">
             <div class="kamar-slider owl-carousel">
                 <div class="ts-item">
-                    <img src="<?= base_url() ?>assets/img/room/room-details.jpg" alt="">
+                    <img src="<?= base_url() ?>assets/img/details/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>/<?= $room['detail_1'] ?>" alt="">
                 </div>
                 <div class="ts-item">
-                    <img src="<?= base_url() ?>assets/img/room/room-details.jpg" alt="">
+                    <img src="<?= base_url() ?>assets/img/details/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>/<?= $room['detail_2'] ?>" alt="">
                 </div>
+                <?php if ($room['detail_3']) { ?>
+                    <div class="ts-item">
+                        <img src="<?= base_url() ?>assets/img/details/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>/<?= $room['detail_3'] ?>" alt="">
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -37,11 +43,9 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="room-details-item">
-
-                    <!-- <img src="<?= base_url() ?>assets/img/room/room-details.jpg" alt=""> -->
                     <div class="rd-text">
                         <div class="rd-title">
-                            <h3>Deluxe Room</h3>
+                            <h3><?= $room['jenis_kamar'] ?></h3>
                             <div class="rdt-right">
                                 <div class="rating">
                                     <i class="icon_star"></i>
@@ -50,23 +54,23 @@
                                     <i class="icon_star"></i>
                                     <i class="icon_star-half_alt"></i>
                                 </div>
-                                <a href="#">Booking Now</a>
+                                <a href="<?= base_url() ?>booking/index/<?= time(); ?>/<?= time() + 86400 ?>">Booking Now</a>
                             </div>
                         </div>
-                        <h2>Rp.600.000,00<span>/Pernight</span></h2>
+                        <h2>Rp<?= number_format(($room['harga_kamar']), 2, ",", ".") ?><span>/Pernight</span></h2>
                         <table>
                             <tbody>
                                 <tr>
                                     <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
+                                    <td><?= $room['ukuran_kamar'] ?>-sqm</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Capacity:</td>
-                                    <td>Max persion 5</td>
+                                    <td>Max persion <?= $room['kapasitas_kamar'] ?></td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
+                                    <td><?= $room['jenis_ranjang'] ?></td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Services:</td>
@@ -79,36 +83,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-lg-4">
-                <div class="room-booking">
-                    <h3>Your Reservation</h3>
-                    <form action="#">
-                        <div class="check-date">
-                            <label for="date-in">Check In:</label>
-                            <input type="text" class="date-input" id="date-in">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="check-date">
-                            <label for="date-out">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="select-option">
-                            <label for="guest">Guests:</label>
-                            <select id="guest">
-                                <option value="">3 Adults</option>
-                            </select>
-                        </div>
-                        <div class="select-option">
-                            <label for="room">Room:</label>
-                            <select id="room">
-                                <option value="">1 Room</option>
-                            </select>
-                        </div>
-                        <button type="submit">Check Availability</button>
-                    </form>
-                </div>
-            </div> -->
+
         </div>
     </div>
 </section>

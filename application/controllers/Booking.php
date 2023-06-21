@@ -10,6 +10,7 @@ class Booking extends CI_Controller
         $data['ci'] = $ci;
         $data['co'] = $co;
         $data['rooms'] = $this->Home_model->getDisplayRoom();
+        $data['count_days'] = ceil(($co - $ci) / 86400);
 
         $this->load->view('templates/header', $data);
         $this->load->view('booking/index', $data);
@@ -28,13 +29,18 @@ class Booking extends CI_Controller
     {
         $data['judul'] = 'Booking Details';
         $data['title'] = ['Dr.', 'Mr.', 'Mrs.', 'Ms.'];
-        $data['user'] = $this->User_model->getUserBySessionEmail();
-        $data['id_jenis_kamar'] = $id_jenis_kamar;
         $data['ci_s'] = $ci;
         $data['co_s'] = $co;
         $data['ci'] = date('D, d M, Y', $ci);
         $data['co'] = date('D, d M, Y', $co);
         $data['count_days'] = ceil(($co - $ci) / 86400);
+
+        $data['user'] = $this->User_model->getUserBySessionEmail();
+        $data['room'] = $this->Rooms_model->getRoomById($id_jenis_kamar);
+        $data['harga_kamar'] = ($data['room']['harga_kamar'] * $data['count_days']);
+        $data['service_charge'] = ceil($data['harga_kamar'] * 0.05);
+        $data['tax'] = ceil(($data['harga_kamar'] + $data['service_charge']) * 0.1);
+        $data['total_harga'] = $data['harga_kamar'] + $data['service_charge'] + $data['tax'];
 
         $this->load->view('templates/header', $data);
         $this->load->view('booking/details', $data);
@@ -44,15 +50,20 @@ class Booking extends CI_Controller
     public function bookingRoom()
     {
         $data = [
-            'id_customer' => $this->input->post('id', true),
-            'name' => htmlspecialchars($this->input->post('name', true)),
-            'email' => htmlspecialchars($this->input->post('email', true)),
-            'phone' => htmlspecialchars($this->input->post('phone', true)),
-            'image' => 'default.jpg',
-            'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-            'role_id' => 2,
-            'is_active' => 1,
-            'date_created' => time()
+            'id_customer' => htmlspecialchars($this->input->post('id_customer', true)),
+            'id_kamar' => htmlspecialchars($this->input->post('id_kamar', true)),
+            'id_pembayaran' => 1,
+            'check_in' => htmlspecialchars($this->input->post('check_in', true)),
+            'check_out' => htmlspecialchars($this->input->post('check_out', true)),
+            'harga_kamar' => htmlspecialchars($this->input->post('harga_kamar', true)),
+            'pajak' => htmlspecialchars($this->input->post('pajak', true)),
+            'service' => htmlspecialchars($this->input->post('service', true)),
+            'total_harga' => htmlspecialchars($this->input->post('total_harga', true)),
+            'jumlah_malam' => htmlspecialchars($this->input->post('jumlah_malam', true))
         ];
+
+        $this->Booking_model->insertDataBooking($data);
+
+        redirect('user/bookings');
     }
 }

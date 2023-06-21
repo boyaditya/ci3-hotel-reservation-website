@@ -128,7 +128,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="#" class="primary-btn">More Details</a>
+                                <a href="<?= base_url() ?>rooms/details/<?= $room['id_jenis_kamar'] ?>/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>" class="primary-btn">More Details</a>
                             </div>
                         </div>
                     </div>

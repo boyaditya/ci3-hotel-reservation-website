@@ -34,9 +34,6 @@
         <div class="canvas-close">
             <i class="icon_close"></i>
         </div>
-        <div class="search-icon  search-switch">
-            <i class="icon_search"></i>
-        </div>
         <div class="header-configure-area">
             <div class="language-option">
                 <?php if ($this->session->userdata('email')) { ?>
@@ -60,11 +57,11 @@
                     </div>
                 <?php } ?>
             </div>
-            <a href="<?= base_url() ?>booking" class="bk-btn">Booking Now</a>
+            <a href="<?= base_url() ?>booking/index/<?= time(); ?>/<?= time() + 86400 ?>" class="bk-btn">Booking Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="<?= base_url() ?>home">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#service">Services</a></li>
                 <li><a href="#rooms">Rooms</a></li>
@@ -153,9 +150,6 @@
                                     <li><a href="#ratings">Ratings</a></li>
                                 </ul>
                             </nav>
-                            <div class="nav-right search-switch">
-                                <i class="icon_search"></i>
-                            </div>
                         </div>
                     </div>
                 </div>

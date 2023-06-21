@@ -26,7 +26,7 @@
                         <ul>
                             <li>(+62) 812 345 678</li>
                             <li>luxehotel@luxe.com</li>
-                            <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+                            <li>Bandung City, West Java, Indonesia</li>
                         </ul>
                     </div>
                 </div>
@@ -47,9 +47,9 @@
                 <div class="col-lg-5">
                     <div class="co-text">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>
+                            <!-- Copyright &copy;<script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -73,6 +73,20 @@
 <!-- Js Plugins -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#date-in').change(function() {
+            $('#checkAvailability').click();
+        });
+    });
+
+    $(document).ready(function() {
+        $('#date-out').change(function() {
+            $('#checkAvailability').click();
+        });
+    });
+</script>
 
 <script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>

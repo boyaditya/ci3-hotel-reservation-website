@@ -121,21 +121,24 @@ class User extends CI_Controller
     {
         $data['judul'] = 'My Bookings';
         $data['user'] = $this->User_model->getUserBySessionEmail();
+        $data['bookings'] = $this->Booking_model->getAllBookings();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
-        $this->load->view('user/bookings');
+        $this->load->view('user/bookings', $data);
         $this->load->view('templates/js');
     }
 
-    public function booking_details()
+    public function booking_details($id)
     {
         $data['judul'] = 'Booking Details';
         $data['user'] = $this->User_model->getUserBySessionEmail();
+        $data['booking'] = $this->Booking_model->getBookingsById($id);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidenav');
-        $this->load->view('user/booking_details');
+        $this->load->view('user/booking_details', $data);
         $this->load->view('templates/js');
     }
+    
 }
