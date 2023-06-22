@@ -33,4 +33,12 @@ class Booking_model extends CI_Model
         $this->db->order_by('id_booking', 'DESC');
         return $this->db->get('')->result_array();
     }
+
+    public function getBookings()
+    {
+        $this->db->select('*');
+        $this->db->from('t_booking');
+        return $this->db->get()->result_array();
+    }
+
 }

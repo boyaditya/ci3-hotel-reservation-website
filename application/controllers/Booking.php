@@ -11,6 +11,8 @@ class Booking extends CI_Controller
         $data['co'] = $co;
         $data['rooms'] = $this->Home_model->getDisplayRoom();
         $data['count_days'] = ceil(($co - $ci) / 86400);
+        $data['allRooms'] = $this->Rooms_model->allRoomCount();
+        $data['allBookings'] = $this->Booking_model->getBookings();
 
         $this->load->view('templates/header', $data);
         $this->load->view('booking/index', $data);

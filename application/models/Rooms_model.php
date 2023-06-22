@@ -19,4 +19,13 @@ class Rooms_model extends CI_Model
         $this->db->join('t_jenis_ranjang', 't_jenis_kamar.jenis_ranjang = t_jenis_ranjang.id_jenis_ranjang');
         return $this->db->get('')->result_array();
     }
+
+    public function allRoomCount()
+    {
+        $this->db->select('jenis_kamar');
+        $this->db->select('COUNT(*) as row_count');
+        $this->db->from('t_kamar');
+        $this->db->group_by('jenis_kamar');
+        return $this->db->get()->result_array();
+    }
 }

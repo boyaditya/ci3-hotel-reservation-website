@@ -69,11 +69,31 @@
                                                 <h5 class="card-text font-weight-bold">Rp<?= number_format(($room['harga_kamar'] * $count_days), 2, ",", ".") ?></h5>
                                                 <p class="card-text"><?= $count_days ?> Night <br> <small class="font-weight-light">Excluding Taxes & Services</small></p>
 
-                                                <?php if ($this->session->userdata('email')) { ?>
-                                                    <a href="<?= base_url() ?>booking/details/<?= $room['id_jenis_kamar'] ?>/<?= $ci ?>/<?= $co ?>"><button class="btn book-btn">Book Now</button></a>
-                                                <?php } else { ?>
-                                                    <button type="button" class="btn book-btn" data-toggle="modal" data-target="#login">Book Now</button>
-                                                <?php } ?>
+                                                <?php
+                                                $check = 0;
+                                                $unavail = 0;
+                                                foreach ($allBookings as $booking) {
+                                                    if ($booking['id_kamar'] === $room['id_jenis_kamar'] && (($ci < $booking['check_out'] && $co > $booking['check_out']) || ($ci < $booking['check_in'] && $co > $booking['check_in']) || ($ci >= $booking['check_in'] && $co <= $booking['check_out']) || ($ci <= $booking['check_in'] && $co >= $booking['check_out']))) {
+                                                        $check++;
+                                                    }
+                                                }
+
+                                                foreach ($allRooms as $roomtest) {
+                                                    if ($roomtest['jenis_kamar'] === $room['id_jenis_kamar'] && $roomtest['row_count'] <= $check) {
+                                                        $unavail = 1;
+                                                    }
+                                                }
+                                                ?>
+
+                                                <?php if ($ci >= $co || $unavail === 1) { ?>
+                                                    <button type="button" class="btn btn-secondary" disabled>Unavailable</button>
+                                                <?php } else if ($unavail === 0) { ?>
+                                                    <?php if ($this->session->userdata('email')) { ?>
+                                                        <a href="<?= base_url() ?>booking/details/<?= $room['id_jenis_kamar'] ?>/<?= $ci ?>/<?= $co ?>"><button class="btn book-btn">Book Now</button></a>
+                                                    <?php } else { ?>
+                                                        <button type="button" class="btn book-btn" data-toggle="modal" data-target="#login">Book Now</button>
+                                                <?php }
+                                                } ?>
                                             </div>
                                         </div>
                                     </div>
