@@ -62,10 +62,16 @@
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="<?= base_url() ?>home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#service">Services</a></li>
-                <li><a href="#rooms">Rooms</a></li>
-                <li><a href="#ratings">Ratings</a></li>
+                <li><a href="<?= base_url() ?>#about">About Us</a></li>
+                <li><a href="<?= base_url() ?>#service">Services</a></li>
+                <li><a href="<?= base_url() ?>rooms">Rooms</a>
+                    <ul class="dropdown">
+                        <?php foreach ($rooms as $room) { ?>
+                            <li><a href="<?= base_url() ?>rooms/details/<?= $room['id_jenis_kamar'] ?>/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>"><?= $room['jenis_kamar'] ?></a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
+                <li><a href="<?= base_url() ?>#ratings">Ratings</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -144,10 +150,16 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="active"><a href="<?= base_url() ?>home">Home</a></li>
-                                    <li><a href="#about">About Us</a></li>
-                                    <li><a href="#service">Services</a></li>
-                                    <li><a href="#rooms">Rooms</a></li>
-                                    <li><a href="#ratings">Ratings</a></li>
+                                    <li><a href="<?= base_url() ?>#about">About Us</a></li>
+                                    <li><a href="<?= base_url() ?>#service">Services</a></li>
+                                    <li><a href="<?= base_url() ?>rooms">Rooms</a>
+                                        <ul class="dropdown">
+                                            <?php foreach ($rooms as $room) { ?>
+                                                <li><a href="<?= base_url() ?>rooms/details/<?= $room['id_jenis_kamar'] ?>/<?= strtolower(str_replace(' ', '-', $room['jenis_kamar'])) ?>"><?= $room['jenis_kamar'] ?></a></li>
+                                            <?php } ?>
+                                        </ul>
+                                    </li>
+                                    <li><a href="<?= base_url() ?>#ratings">Ratings</a></li>
                                 </ul>
                             </nav>
                         </div>

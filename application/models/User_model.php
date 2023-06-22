@@ -29,4 +29,9 @@ class User_model extends CI_Model
         $this->db->where('email', $this->session->userdata('email'));
         $this->db->update('user');
     }
+
+    public function insertTestimonial($data)
+    {
+        $this->db->insert('t_testimonial', $data);
+    }
 }

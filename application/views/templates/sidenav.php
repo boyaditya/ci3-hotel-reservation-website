@@ -44,7 +44,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url() ?>user/bookings" class="nav-link <?= $judul == ('My Bookings') || $judul == ('Booking Details')? 'active' : '' ?>">
+                                    <a href="<?= base_url() ?>user/bookings" class="nav-link <?= $judul == ('My Bookings') || $judul == ('Booking Details') || $judul == ('Testimonial') ? 'active' : '' ?>">
                                         <i class="fa fa-fw fa-list-alt" aria-hidden="true"></i>
                                         &nbsp; My Bookings
                                     </a>

@@ -27,6 +27,7 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['judul'] = 'Login Page';
+            $data['rooms'] = $this->Rooms_model->getDisplayRoom();
             $this->load->view('templates/header', $data);
             $this->load->view('auth/login');
             $this->load->view('templates/js');
@@ -91,6 +92,7 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['judul'] = 'Registration Page';
             $data['title'] = ['Dr.', 'Mr.', 'Mrs.', 'Ms.'];
+            $data['rooms'] = $this->Rooms_model->getDisplayRoom();
             $this->load->view('templates/header', $data);
             $this->load->view('auth/registration', $data);
             $this->load->view('templates/js');

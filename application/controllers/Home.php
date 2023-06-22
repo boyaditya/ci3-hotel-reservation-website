@@ -8,6 +8,7 @@ class Home extends CI_Controller
         $data['judul'] = 'Home';
         $data['user'] = $this->User_model->getUserBySessionEmail();
         $data['rooms'] = $this->Home_model->getDisplayRoom();
+        $data['testimonials'] = $this->Admin_model->getAllDisplayTestimonials();
 
         $this->load->view('templates/header', $data);
         $this->load->view('home/index', $data);

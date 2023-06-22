@@ -44,9 +44,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url() ?>admin/invoicelist" class="nav-link <?= $judul == ('Invoice List') ? 'active' : '' ?>">
+                                    <a href="<?= base_url() ?>admin/bookinglist" class="nav-link <?= $judul == ('Booking List') || $judul == ('Booking Details') ? 'active' : '' ?>">
                                         <i class="fa fa-fw fa-money" aria-hidden="true"></i>
-                                        &nbsp; Invoice List
+                                        &nbsp; Booking List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url() ?>admin/testimoniallist" class="nav-link <?= $judul == ('Testimonial List') ? 'active' : '' ?>">
+                                        <i class="fa fa-fw fa-comments" aria-hidden="true"></i>
+                                        &nbsp; Testimonial List
                                     </a>
                                 </li>
                             </ul>

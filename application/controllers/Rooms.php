@@ -19,6 +19,7 @@ class Rooms extends CI_Controller
         $data['judul'] = 'Room Details';
         $data['user'] = $this->User_model->getUserBySessionEmail();
         $data['room'] = $this->Rooms_model->getRoomById($id);
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
         $data['folder'] = $folder;
         
         $this->load->view('templates/header', $data);

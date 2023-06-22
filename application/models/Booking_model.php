@@ -17,10 +17,20 @@ class Booking_model extends CI_Model
 
     public function getBookingsById($id)
     {
-        $this->db->select('*');
+        $this->db->select('t_booking.*, user.name, user.email, user.phone, t_jenis_kamar.*');
         $this->db->from('t_booking');
         $this->db->join('t_jenis_kamar', 't_booking.id_kamar = t_jenis_kamar.id_jenis_kamar');
         $this->db->join('user', 'user.id = t_booking.id_customer');
         return $this->db->get_where('', ['id_booking' => $id])->row_array();
+    }
+
+    public function getAllUserBookings()
+    {
+        $this->db->select('user.name, user.email, user.phone, t_booking.*');
+        $this->db->from('t_booking');
+        $this->db->join('t_jenis_kamar', 't_jenis_kamar.id_jenis_kamar = t_booking.id_kamar');
+        $this->db->join('user', 'user.id = t_booking.id_customer');
+        $this->db->order_by('id_booking', 'DESC');
+        return $this->db->get('')->result_array();
     }
 }

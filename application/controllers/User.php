@@ -15,10 +15,11 @@ class User extends CI_Controller
             }
         }
     }
-    
+
     public function index()
     {
         $data['judul'] = 'My Profile';
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
         $data['user'] = $this->User_model->getUserBySessionEmail();
 
         $this->load->view('templates/header', $data);
@@ -31,6 +32,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Edit Profile';
         $data['title'] = ['Dr.', 'Mr.', 'Mrs.', 'Ms.'];
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
         $data['user'] = $this->User_model->getUserBySessionEmail();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
@@ -64,7 +66,6 @@ class User extends CI_Controller
                     }
 
                     $this->User_model->uploadUserImage();
-                    
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
                     redirect('user');
@@ -81,6 +82,7 @@ class User extends CI_Controller
     public function changePassword()
     {
         $data['judul'] = 'Change Password';
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
         $data['user'] = $this->User_model->getUserBySessionEmail();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
@@ -95,7 +97,7 @@ class User extends CI_Controller
         } else {
             $current_password = $this->input->post('current_password');
             $new_password = $this->input->post('new_password1');
-            
+
             if (!password_verify($current_password, $data['user']['password'])) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
                 redirect('user/changepassword');
@@ -121,6 +123,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'My Bookings';
         $data['user'] = $this->User_model->getUserBySessionEmail();
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
         $data['bookings'] = $this->Booking_model->getAllBookings();
 
         $this->load->view('templates/header', $data);
@@ -133,6 +136,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Booking Details';
         $data['user'] = $this->User_model->getUserBySessionEmail();
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
         $data['booking'] = $this->Booking_model->getBookingsById($id);
 
         $this->load->view('templates/header', $data);
@@ -140,5 +144,31 @@ class User extends CI_Controller
         $this->load->view('user/booking_details', $data);
         $this->load->view('templates/js');
     }
-    
+
+    public function testimonial($id_jenis_kamar)
+    {
+        $data['judul'] = 'Testimonial';
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
+        $data['user'] = $this->User_model->getUserBySessionEmail();
+        $data['room'] = $this->Rooms_model->getRoomById($id_jenis_kamar);
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidenav');
+        $this->load->view('user/testimonial', $data);
+        $this->load->view('templates/js');
+    }
+
+    public function addtestimonial($id_jenis_kamar)
+    {
+        $data = [
+            'id_customer' => $this->input->post('id', true),
+            'testimonial' => htmlspecialchars($this->input->post('testimonial', true))
+        ];
+
+        $this->User_model->insertTestimonial($data);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your testimonials has been sent, thank you!</div>');
+        redirect('user/testimonial/' . $id_jenis_kamar);
+    }
 }

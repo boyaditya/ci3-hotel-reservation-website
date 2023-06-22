@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="mb-4 back"><a href="<?= base_url() ?>user/bookings"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> Booking Details</h4>
+                <h3 class="mb-4 back"><a href="<?= base_url() ?>admin/bookinglist"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> Booking Details</h4>
                     <div class="card">
                         <div class="card-body">
                             <div class="invoice-title">

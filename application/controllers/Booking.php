@@ -29,6 +29,8 @@ class Booking extends CI_Controller
     {
         $data['judul'] = 'Booking Details';
         $data['title'] = ['Dr.', 'Mr.', 'Mrs.', 'Ms.'];
+        $data['rooms'] = $this->Rooms_model->getDisplayRoom();
+
         $data['ci_s'] = $ci;
         $data['co_s'] = $co;
         $data['ci'] = date('D, d M, Y', $ci);
@@ -63,6 +65,7 @@ class Booking extends CI_Controller
         ];
 
         $this->Booking_model->insertDataBooking($data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Booking success. Thank you!</div>');
 
         redirect('user/bookings');
     }
