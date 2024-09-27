@@ -53,6 +53,9 @@
                             </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
+                        <p>
+                            Developed by <a href="https://github.com/boyaditya" target="_blank">@boyaditya</a> & <a href="https://github.com/artefiq" target="_blank">@artefiq</a>
+                        </p>
                     </div>
                 </div>
             </div>
