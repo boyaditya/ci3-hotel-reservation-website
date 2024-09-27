@@ -19,7 +19,7 @@ Additionally, an admin panel is included, allowing administrators to monitor key
 
 ## 📸 Screenshot
 ### Landing Page
-![screencapture-localhost-8080-application-ci-ci3-hotel-reservation-web-home-2024-09-27-08_12_56](https://github.com/user-attachments/assets/b8a908af-3af1-435f-bdcf-78cb759b8e08)
+![screencapture-localhost-8080-application-ci-ci3-hotel-reservation-web-home-2024-09-27-09_50_38](https://github.com/user-attachments/assets/88e4c68e-fb63-4547-9564-66367d7d4a83)
 
 ### Rooms
 ![screencapture-localhost-8080-application-ci-ci3-hotel-reservation-web-rooms-2024-09-27-08_15_33](https://github.com/user-attachments/assets/60b27741-e1a3-4601-abcf-2fc615071635)
