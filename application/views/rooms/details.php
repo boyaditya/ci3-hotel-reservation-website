@@ -57,7 +57,7 @@
                                 <a href="<?= base_url() ?>booking/index/<?= time(); ?>/<?= time() + 86400 ?>">Booking Now</a>
                             </div>
                         </div>
-                        <h2>Rp<?= number_format(($room['harga_kamar']), 2, ",", ".") ?><span>/Pernight</span></h2>
+                        <h2>Rp<?= number_format(($room['harga_kamar']), 2, ",", ".") ?><span>/Night</span></h2>
                         <table>
                             <tbody>
                                 <tr>
