@@ -4,19 +4,20 @@ This is a web-based hotel reservation system created as the final project for th
 The system allows users to browse hotel rooms with photos, view room specifications, make reservations, manage their profiles, and check booking history. 
 Additionally, an admin panel is included, allowing administrators to monitor key metrics such as revenue and guest count.
 
-## Features
-- **Hotel Room Gallery:** Browse through photos and details of available hotel rooms.
+## ⭐ Features
+- **Hotel Room Gallery:** Hotel Room Gallery: Browse through photos and details of available hotel rooms..
 - **Room Specifications:** View detailed information about each room, such as bed type, amenities, and pricing.
 - **Reservation System:** Users can register, log in, and make room reservations.
 - **Profile Management:** Users can update their personal information and view their booking history.
-- **Admin Dashboard:** Admins can log in to view dashboards displaying hotel revenue, guest count, and other important data.
+- **User Testimonials:** Users can submit testimonials about their stay, which can be displayed on the landing page by the admin.
+- **Admin Dashboard:** Admins can log in to view dashboards displaying hotel revenue, guest count, and manage user testimonials displayed on the landing page.
   
-## Technologies Used
+## ⚙ Technologies Used
 - **CodeIgniter 3:** PHP framework used for building the web application.
 - **MySQL:** Database management system to store user, room, and booking data.
 - **Bootstrap v4.6.2:** Front-end framework used for responsive and modern UI design.
 
-## Screenshot
+## 📸 Screenshot
 ### Landing Page
 ![screencapture-localhost-8080-application-ci-ci3-hotel-reservation-web-home-2024-09-27-08_12_56](https://github.com/user-attachments/assets/b8a908af-3af1-435f-bdcf-78cb759b8e08)
 
@@ -46,8 +47,8 @@ Additionally, an admin panel is included, allowing administrators to monitor key
 ![screencapture-localhost-8080-application-ci-ci3-hotel-reservation-web-admin-testimoniallist-2024-09-27-08_27_14](https://github.com/user-attachments/assets/43f8d3b7-7ac0-4723-afbe-f720a459e75d)
 
 ## 🤓 Author(s)
-@boyaditya
-@artefiq
+- @boyaditya
+- @artefiq
 
 ## ✋ Acknowledgement
 - Website Template: [Sona](https://themewagon.com/themes/free-bootstrap-4-html5-responsive-hotel-website-template-sona/)
